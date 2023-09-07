@@ -9,6 +9,9 @@
   - name: install java
     yum: name=java state=present
 
+  - name: install git
+    command: sudo yum install git -y
+
   - name: Extract tar.gz file with permissions
     unarchive:
       src: https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.80/bin/apache-tomcat-9.0.80.tar.gz
@@ -29,16 +32,18 @@
     command: sudo chmod +x /opt/tomcat/bin/shutdown.sh
 
   - name: start tomcat
-    command: bash /opt/tomcat/bin/startup.sh           # if this faile, run manually = $ ./opt/tomcat/bin/startup.sh
-
-  - name: install git
-    command: sudo yum install git -y
+    command: bash /opt/tomcat/bin/startup.sh          
 
   - name: clone a repo
-    git: repo=https://github.com/Ngwaabanjong/ansible-tomcat-project.git dest=/tmp/mygitrepo1
+    command: git clone https://github.com/Ngwaabanjong/ansible-tomcat-project.git 
 
   - name: copy file to tomcat
-    command: chdir=/tmp/mygitrepo1 cp ansible-tomcat-project/target/ABCtechnologies-1.0.war /opt/tomcat/webapps
+    command: cp ansible-tomcat-project/target/XYZtechnologies-1.0.war /opt/tomcat/webapps
+
+  # browse your webapp http://<ip>:8080/XYZtechnologies-1.0
+  # if this fail, check the tomcat deamon $ systemctl status tomcat
+  # run manually = $ sudo chown -R ec2-user:ec2-user /opt/tomcat 
+  # run this next= $ bash /opt/tomcat/bin/startup.sh
 
 
     
