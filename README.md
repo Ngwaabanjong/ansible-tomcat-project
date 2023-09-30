@@ -25,16 +25,10 @@ run cmd manually = $ sudo chown -R ec2-user:ec2-user /opt/tomcat
 run this cmd next = $ bash /opt/tomcat/bin/startup.sh
 
 # 6 - Tomcat login Configuration
+- Open the context.xml file and insert the user roles.
 nano /opt/tomcat/webapps/host-manager/META-INF/context.xml
 
 Scroll to the bottom at the end before /tomcat-users> add paste these roles
-role rolename="manager-gui"/>
-role rolename="manager-script"/>
-role rolename="manager-jmx"/>
-role rolename="manager-status"/>
-user username="admin" password="admin" roles="manager-gui, manager-script, manager-jmx, manager-status"/>
-user username="admin" password="s3cret" roles="manager-script, manager-gui, admin-gui"/>
-user username="tomcat" password="s3cret" roles="manager-gui"/>
-
+- Copy roles script from tomcat-user-roles.sh
 - Restart tomcat
 bash /opt/tomcat/bin/shutdown.sh
