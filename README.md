@@ -32,3 +32,8 @@ Scroll to the bottom at the end before /tomcat-users> add paste these roles
 - Copy roles script from tomcat-user-roles.sh
 - Restart tomcat
 bash /opt/tomcat/bin/shutdown.sh
+
+# 7 - Login
+Browse: http://public-ip:8080
+username: admin
+Password: s3cret
